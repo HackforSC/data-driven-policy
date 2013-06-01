@@ -1,4 +1,4 @@
-module Analyzable
+module Summarizable
   # Example usage
   
 =begin
@@ -30,4 +30,4 @@ module Analyzable
   def standard_deviation
     return Math.sqrt(self.sample_variance)
   end
-end 
+end

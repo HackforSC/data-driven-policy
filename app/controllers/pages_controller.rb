@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
     @objects = EconomicDataService.new.get_data_objects
+    @mean = VariableMeanContext(@objects)
 
     respond_to do |format|
       format.json { }   

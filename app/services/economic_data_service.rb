@@ -7,19 +7,9 @@ class EconomicDataService
     @test = "http://www.bea.gov/api/data/?&UserID=0C2DB8A8-4910-4624-B298-41F283F9A74C&method=GetData&datasetname=RegionalData&KeyCode=PCPI_CI&GeoFIPS=STATE&Year=2009&ResultFormat=XML&"
   end
 
-  def get_fips_list
-    fips = []
-    data_objects = get_xml_doc.xpath("//Data")
-    data_objects.each do |data|
-      fip = data.attr('GeoFips')
-      fips << fip
-    end
-    return fips
-  end
-
-  def get_data_objects
+  def get_data_objects(year = "2009", variable = "PCPI_CI")
     objects = []
-    data_objects = get_xml_doc.xpath("//Data")
+    data_objects = get_xml_doc(year, variable).xpath("//Data")
     data_objects.each do |data|
       objects << data
     end
@@ -27,8 +17,8 @@ class EconomicDataService
   end
 
   private
-  def get_xml_doc
-    url = build_request("2009", "PCPI_CI")
+  def get_xml_doc(year, variable)
+    url = build_request(year, variable)
     doc = Nokogiri::XML(open(url))
     return doc 
   end
