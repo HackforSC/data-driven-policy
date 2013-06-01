@@ -65,6 +65,9 @@ end
 # HTTP requests
 gem 'httparty'
 
+# Gems for seeding
+gem 'seedbank', '~> 0.2.0'
+
 # Simple Form for easier form creation
 gem 'simple_form', '~> 2.0.2'
 gem 'nested_form', '~> 0.3.1'

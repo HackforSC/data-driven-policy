@@ -1,6 +1,6 @@
-class CreateDistributions < ActiveRecord::Migration
+class CreateBeaVariableDistributions < ActiveRecord::Migration
   def change
-    create_table(:distributions) do |t|
+    create_table(:bea_variable_distributions) do |t|
       t.string :key_code,       :null => false
       t.string :msa,            :null => false
       t.integer :year,          :null => false

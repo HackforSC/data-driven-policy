@@ -1,9 +1,7 @@
 extend SeedFunctions
 
-puts "Seeding Distributions"
-# Demo Customer
-#------------------------------------------------------------------------------
-if (true)
-  years = ["2001", "2002"]
-  msas = 
+puts "Seeding BEA Data Variable Distributions"
+
+if (BeaVariableDistribution.count == 0)
+  create_bea_variable_distributions
 end
