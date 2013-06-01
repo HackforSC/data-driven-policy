@@ -14,13 +14,19 @@
 ActiveRecord::Schema.define(:version => 20120713001520) do
 
   create_table "bea_variable_distributions", :force => true do |t|
-    t.string   "key_code",   :null => false
-    t.string   "msa",        :null => false
-    t.integer  "year",       :null => false
-    t.decimal  "mean",       :null => false
-    t.decimal  "std_dev",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "key_code",     :null => false
+    t.integer  "year",         :null => false
+    t.decimal  "min",          :null => false
+    t.decimal  "min_trim",     :null => false
+    t.decimal  "max",          :null => false
+    t.decimal  "max_trim",     :null => false
+    t.integer  "num_outliers", :null => false
+    t.decimal  "mean",         :null => false
+    t.decimal  "mean_trim",    :null => false
+    t.decimal  "std_dev",      :null => false
+    t.decimal  "std_dev_trim", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end

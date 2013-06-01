@@ -6,6 +6,14 @@ module Summarizable
     get_vector(opts).size
   end
   
+  def min(opts = {})
+    get_vector(opts).min
+  end
+
+  def max(opts = {})
+    get_vector(opts).max
+  end
+
   def sum(opts = {})
     get_vector(opts).sum
   end
