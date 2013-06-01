@@ -2,23 +2,44 @@
 
 div.row
   div.large-12.columns
-    div.panel
-      h6 Testing
-div.row
-  div.large-12.columns
-    div.panel
-      h1 "Count = #{@count}"      
-      p "Range = #{@range}"
-      p "Mean = #{@mean}"
-      p "Std Dev = #{@std_dev}"
-    div.panel
-      h1 "Count = #{@trimmed_count}"      
-      p "Outliers = #{@num_outliers}"
-      p "Trimmed Range = #{@trimmed_range}"
-      p "Trimmed Mean = #{@trimmed_mean}"
-      p "Trimmed Std Dev = #{@trimmed_std_dev}"
-    div.panel
-      p "Objects = #{@objects}"
-    div.panel
-      - @objects.each do |object|
-        h4 "#{object}
+    javascript:
+      $(function(){
+        new Highcharts.Chart({         
+          chart: {
+            renderTo: 'frames_chart',
+            margin: [50, 0, 0, 0],
+            plotBackgroundColor: 'none',
+            plotBorderWidth: 0,
+            plotShadow: false            
+          },
+          title: {
+            text: 'CHART TITLE'
+          },
+          subtitle: {
+            text: 'Inner circle: 2008, outer circle: 2010'
+          },
+          tooltip: {
+            formatter: function() {
+               return '<b>'+ this.series.name +'</b><br/>'+ 
+               this.point.name +': '+ this.y +' %';
+            }
+          },
+          series: [      
+            {
+              type: 'pie',
+              name: '2008',
+              size: '60%',
+              innerSize: '10%',
+              data: [
+                ["Car", 93.0]
+                ["House", 91.0]
+              ],
+              dataLabels: {
+                enabled: false
+              }
+            },           
+          ]
+        });
+      });
+
+    div[id="frames_chart" style="width:100%; height:400px"] 

@@ -28,6 +28,10 @@ gem 'gritter', '1.0.3'
 # Template Engines
 gem 'slim', '~> 1.3.9'
 
+# Graphing packages
+gem 'highcharts-rails', '~> 3.0.0'
+gem 'lazy_high_charts'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

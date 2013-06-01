@@ -16,3 +16,4 @@
 //= require foundation
 //= require jquery_nested_form
 //= require gritter
+//= require highcharts

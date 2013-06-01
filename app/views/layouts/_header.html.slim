@@ -7,4 +7,5 @@ nav.top-bar
   section.top-bar-section
     ul.right
       = nav_link "Home", home_path
-      li.has-form = link_to("Sign In", home_path, :id => "home-button", :class => 'radius small button' )
+      = nav_link "Test", test_path
+      li.has-form = link_to("Get Hood", "https://soundcloud.com/hoodinternet/the-hood-internet-mixtape-volume-seven", :id => "home-button", :class => 'radius small button', :target => "_blank" )
