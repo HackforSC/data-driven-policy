@@ -7,6 +7,16 @@ class EconomicDataService
     @test = "http://www.bea.gov/api/data/?&UserID=0C2DB8A8-4910-4624-B298-41F283F9A74C&method=GetData&datasetname=RegionalData&KeyCode=PCPI_CI&GeoFIPS=STATE&Year=2009&ResultFormat=XML&"
   end
 
+  def get_data_array(year = "2009", variable = "PCPI_CI")
+    objects = []
+    data_objects = get_xml_doc(year, variable).xpath("//Data")
+    data_objects.each do |data|
+      object = BigDecimal.new(data.attr("DataValue"))
+      objects << object
+    end
+    return objects
+  end
+
   def get_data_objects(year = "2009", variable = "PCPI_CI")
     objects = []
     data_objects = get_xml_doc(year, variable).xpath("//Data")

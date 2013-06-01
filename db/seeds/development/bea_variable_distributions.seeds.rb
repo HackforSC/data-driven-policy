@@ -3,7 +3,7 @@ extend SeedFunctions
 puts "Seeding Distributions"
 # Demo Customer
 #------------------------------------------------------------------------------
-if (Customer.find_by_username("customer").nil?)
+if (true)
   years = ["2001", "2002"]
   msas = 
 end

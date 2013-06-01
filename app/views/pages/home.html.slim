@@ -8,6 +8,8 @@ div.row
   div.large-12.columns
     div.panel
       h1 "Count = #{@objects.count}"      
+      p "Mean = #{@mean}"
+      p "Std Dev = #{@std_dev}"
     div.panel
       - @objects.each do |object|
         h4 "#{object}
