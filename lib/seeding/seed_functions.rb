@@ -14,9 +14,13 @@ module SeedFunctions
   private
   def create_bea_variable_distribution(variable, year)
     objects = EconomicDataService.new.get_data_array(variable, year)
-    mean = VariableMeanContext.call(objects)
-    std_dev = VariableStdDevContext.call(objects)
+    mean = VariableSummaryContext.call(objects, :mean)
+    std_dev = VariableSummaryContext.call(objects, :standard_deviation)
     puts "Mean = #{mean}, Standard Dev = #{std_dev}"
+    objects.each do |object|
+      puts "Data = #{object.to_d}"
+    end
+#    puts "Objects = #{objects}"
   end
 
   def definition_file

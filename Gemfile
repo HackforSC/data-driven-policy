@@ -62,8 +62,11 @@ group :test do
   gem 'vcr'
 end
 
+# Statistics packages
+gem 'statsample', '~> 1.2.0'
+
 # HTTP requests
-gem 'httparty'
+#gem 'httparty'
 
 # Gems for seeding
 gem 'seedbank', '~> 0.2.0'
