@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    meta name="author" content="Credda Financial Corporation"
+    meta name="description" content=full_description
+    meta name="keywords" content="lease-to-own"
+    title = full_title
+    = stylesheet_link_tag :application, :media => "all"
+    = javascript_include_tag "vendor/custom.modernizr"
+    = javascript_include_tag :application, :media => "all"
+    = csrf_meta_tags
+    = yield(:head)
+  body[class=body_classes]
+    header
+      = render 'layouts/header'
+    div#main-wrapper
+      div[id=page_id]
+        = render 'layouts/messages'
+        = content_for?(:content) ? yield(:content) : yield
+    footer
+      = render 'layouts/footer'
+    javascript:
+      $(document).foundation();
+

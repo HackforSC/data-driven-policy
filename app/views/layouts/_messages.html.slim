@@ -1,0 +1,10 @@
+div.row
+  div.large-12.columns
+    - unless flash.empty?
+      div#flash-messages
+        - flash.each do |name, msg|
+          - if msg.is_a?(String)
+            = js add_gritter(msg, :image => image_path("icons/#{name}.png"), :class_name => "alert-#{name}", :time => 4000)
+            div[data-alert class="alert-box alert-#{name}"]
+              a.close &times;
+              = content_tag :div, msg, :id => "flash_#{name}"
