@@ -1,0 +1,28 @@
+@import "compass/css3/images";
+
+footer {
+  padding-top: 10px;
+  h6 {
+    color: white;
+  }
+  ul {
+    margin: 0px;
+    list-style: none;
+    &.first {
+      float: left;
+      text-align: left;
+    }
+    &.last {
+      float: right;
+      text-align: right;            
+    }
+    li {
+      color: white;
+      margin: 0px;
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+}

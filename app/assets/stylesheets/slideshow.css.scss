@@ -1,0 +1,50 @@
+@import "compass/css3/images";
+@import "compass/css3/background-size";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
+@import "compass/css3/opacity";
+
+// Featured Slider
+.orbit-container {
+  .orbit-slide-number {
+    display: none; 
+  }
+
+  .orbit-timer {
+    display: none;
+  }
+
+  .orbit-prev {
+    display: none;
+  }
+
+  .orbit-next {
+    display: none;
+  }
+  ul {
+    li {
+      .slide1 {
+        @include background(image-url("car_and_tires.jpg") no-repeat);
+        @include background-size(100%, 100%);
+        .intro-text {
+          padding: 10px 25px;
+          background: black;
+          @include border-radius(25px);
+          @include opacity(0.9);
+        }
+        h2, p, li {
+          color: #FFFFFF;
+          @include text-shadow(rgba(0, 0, 0, 0.9) 0 1px 0);
+        }
+      }
+      .slide {
+        padding: 20px 80px 50px 80px;
+      }
+    }
+  }
+}
+
+ol.orbit-bullets {
+  display: none;
+}

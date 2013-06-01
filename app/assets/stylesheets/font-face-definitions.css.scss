@@ -1,0 +1,25 @@
+@font-face {
+    font: {
+       family: 'DroidSans';
+       weight: 'normal';
+       style: 'normal';
+    }
+    src: asset-url('Droid-Sans/DroidSans-webfont.eot', font);
+    src: asset-url('Droid-Sans/DroidSans-webfont.eot', font) format('embedded-opentype'),
+         asset-url('Droid-Sans/DroidSans-webfont.woff', font) format('woff'),
+         asset-url('Droid-Sans/DroidSans-webfont.ttf', font) format('truetype'),
+         asset-url('Droid-Sans/DroidSans-webfont.svg#JunctionRegular', font) format('svg')
+}
+
+@font-face {
+    font: {
+       family: 'Lobster';
+       weight: 'normal';
+       style: 'normal';
+    }
+    src: asset-url('Lobster/Lobster_1.3-webfont.eot', font);
+    src: asset-url('Lobster/Lobster_1.3-webfont.eot', font) format('embedded-opentype'),
+         asset-url('Lobster/Lobster_1.3-webfont.woff', font) format('woff'),
+         asset-url('Lobster/Lobster_1.3-webfont.ttf', font) format('truetype'),
+         asset-url('Lobster/Lobster_1.3-webfont.svg#JunctionRegular', font) format('svg')
+}

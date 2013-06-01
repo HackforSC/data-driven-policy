@@ -1,0 +1,191 @@
+@import "compass/css3/images";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/opacity";
+@import "compass/css3/transform";
+
+form {
+  fieldset {
+    background: white;  
+    legend {
+      padding: 3px;
+      border: #CCCCCC 1px solid;
+    }
+  }
+ 
+  .section-container.accordion {
+    .section {
+      .content {
+        fieldset.extra-padding {
+          padding: 1.25em !important;
+        }
+        a.cancel {
+          padding: 16px 24px;
+        }
+      }
+    }
+  }
+  
+  .helper-text {
+    margin-top: -5px;
+    padding: 0px;
+    font-size: 60%;
+    color: #333333;
+  }
+
+  // Error messages
+  .error {
+    @include border-bottom-left-radius(5px);
+    @include border-bottom-right-radius(5px);
+  }
+
+  // Select Boxes (Dropdowns)
+  select {
+    background-color: white;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    color: rgba(0, 0, 0, 0.75);
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    height: 32px;
+    margin: 0 0 12px;
+    padding: 6px;
+    transition: all 0.15s linear 0s;
+    width: 100%;
+    
+    &.date_select {
+      float: left;
+      max-width: 47%;
+      margin-right: 3%;
+    }
+  }
+
+  // Switches
+  .switch {
+    margin-top: 6px;
+    margin-bottom: 0px;
+    max-width: 100px;
+  }
+
+  // Checkboxes
+  input[type=checkbox] {
+    visibility: hidden;
+  }
+
+  .terms_agreement {
+    label {
+      margin-top: 2px;
+      cursor: pointer;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+    
+      @include border-radius(4px, 4px);
+      @include background-image(linear-gradient(#29A5CE, #2184A5));
+    }
+
+    label:after {
+      @include opacity(0);
+      @include rotate(-45deg);
+      content: '';
+      position: absolute;
+      width: 9px;
+      height: 5px;
+      background: transparent;
+      top: 6px;
+      left: 5px;
+      border: 3px solid #fcfff4;
+      border-top: none;
+      border-right: none;    
+    }
+
+    label:hover::after {
+      @include opacity(0.3);
+    }
+    
+    input[type=checkbox]:checked + label:after {
+      @include opacity(1);
+    }
+    
+    p {
+      margin-left: 30px;
+    }    
+
+    .error {
+      @include border-radius(5px);
+    }
+  }
+  
+  input[type="text"]:disabled {
+    background: #DEDEDE;
+  }
+  
+  ::-webkit-input-placeholder { /* WebKit browsers */
+      color:    #AAAAAA;
+//      color:    #777777;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color:    #AAAAAA;
+//      color:    #777777;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color:    #AAAAAA;
+//      color:    #777777;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+      color:    #AAAAAA;
+//      color:    #777777;
+  }
+
+  a.cancel {
+    padding: 16px 24px;
+  }
+}
+
+#ui-datepicker-div {
+  background: #29A5CE;
+  .ui-datepicker-header {
+    background: #29A5CE;
+    .ui-datepicker-prev {
+      float: left;
+      color: white;
+    }
+    .ui-datepicker-next {
+      float: right;
+      color: white;
+    }
+    .ui-datepicker-title {
+      padding: 5px 0px 5px 40px;
+      font-weight: bold; 
+      color: white;
+      text-align: center;
+      
+      select {
+        width: 80px;
+        margin: 0px 5px;
+      }
+    }
+    a {
+      padding: 5px;
+      font-weight: bold;
+    }
+  }
+  table {
+    margin: 6px;
+  }
+}
+
+a.cancel {
+  margin-left: 10px;
+  margin-right: 10px;  
+}
+
+#authentication-links {
+  ul {
+    li {
+      list-style: none;
+    }
+  }
+}

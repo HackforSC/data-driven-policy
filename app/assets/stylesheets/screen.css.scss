@@ -1,0 +1,31 @@
+@import "compass/css3/images";
+
+/* Body Sizing & Layout */
+html, body {
+//  min-height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  // This is the color that flows into the footer
+  @include background(image-url("header.png"));
+}
+
+#main-wrapper {
+  // Background of our main div, with all of our content
+  @include background(image-url("light_background.png"));
+}
+
+.content {
+  padding: 10px 5px;
+}
+
+/* Fonts */
+h1, h2, h3, h4, h5, p {
+}
+
+h1 {
+  color: #2BA6CB;
+  border-bottom: 1px dashed #BDBDBD;
+}

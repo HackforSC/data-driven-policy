@@ -1,0 +1,120 @@
+@import "compass/css3/images";
+@import "compass/css3/opacity";
+@import "compass/css3/border-radius";
+
+// Top Bar Navigation
+nav.top-bar {
+  a#logo {
+    img {
+      margin-top: 7px;
+      margin-left: 15px;
+    }
+  }
+  section {
+    ul {
+      background: none;
+      li {
+        background: none;      
+        &:hover {
+          background: #333333;
+          @include opacity(10%);
+        }
+  
+        &.active {
+          background: #000000;
+          @include opacity(30%);
+        }
+
+        &.has-form {
+          background: none;
+          &:hover {
+            background: none;
+          }
+        }
+
+        a:not(.button) {
+          background: none;
+        }
+        
+        .button {
+          background: #FF8500; 
+          
+          &:hover {
+            background: #CC6A00;             
+          }
+        }
+        
+        
+      }
+    }
+  }
+  
+  li.has-form {
+    a.button {
+      height: 3em;
+      padding: 5px 15px;
+      top: 10px;
+    }
+  }
+  @include background(image-url("header.png"));
+}
+
+// Sidebar Navigation
+ul.side-nav {
+  li { 
+    padding: 10px 0px;
+
+    a {
+      height: 70px;
+      img {
+        float: left;
+        height: 70px;
+        align: center;
+      }
+
+      span {
+        padding-right: 20px;
+        padding-top: 20px;
+        display: block;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: #000000;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+  
+  li.active {
+  }
+  
+  li:hover {
+    background: #FFFFFF;
+    @include border-radius(15px);
+  }
+}
+
+@media (max-width: 768px) { 
+  .side-nav-container {
+  }
+
+  ul.side-nav {
+    background: none;
+    li {
+      float: left;
+      width: 110px;
+      height: 120px;
+      a {
+        span {
+          text-align: center;
+        }
+      }
+    }
+    li.active {
+    }
+    
+    li:hover {
+      background: none;
+    }
+  }
+}
