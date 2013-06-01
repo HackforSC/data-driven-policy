@@ -9,4 +9,7 @@ div.row
 div.row
   div.large-12.columns
     div.panel
-      h4 "#{@data}"
+      h1 "Count = #{@objects.count}"
+    div.panel
+      - @objects.each do |object|
+        h4 "#{object}
