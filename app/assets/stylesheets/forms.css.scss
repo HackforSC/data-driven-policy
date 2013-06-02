@@ -60,6 +60,10 @@ form {
       max-width: 47%;
       margin-right: 3%;
     }
+    
+    &.multiple {
+      height: 200px;
+    }
   }
 
   // Switches

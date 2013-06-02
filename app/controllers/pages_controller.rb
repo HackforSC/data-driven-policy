@@ -48,6 +48,22 @@ class PagesController < ApplicationController
     render :historic_data
   end
   
+  def msa_search
+    
+    respond_to do |format|
+      format.json { }   
+      format.xml  { }
+      format.html  # this renders home.html.haml
+    end 
+  end
+  
+  def fetch_msa_search
+    distance = EconomicDataService.new
+#    time_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
+#    gon.chart_data = time_series
+    
+    render :msa_search
+  end
   private
   def dummy_data
     # This formatting is somehow still wrong...

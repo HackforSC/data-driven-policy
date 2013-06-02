@@ -5,10 +5,10 @@ div.row
     h1 Make a query
     = form_tag @historic_data, :url => fetch_historic_data_path do
       fieldset
-        legend Account Information
+        legend Query Information
         div.row
           div.large-6.columns
-            = label_tag "Key Code"
+            = label_tag "Variable"
             = select_tag :key_code, options_for_select(key_codes)
           div.large-6.columns
             = label_tag "MSA"

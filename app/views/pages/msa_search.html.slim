@@ -1,0 +1,19 @@
+= provide(:title, 'Find Similar MSA')
+
+div.row
+  div.large-12.columns
+    h1 Make a query
+    = form_tag @msa, :url => msa_search_path do
+      fieldset
+        legend MSA
+        div.row
+          div.large-6.columns
+            = label_tag "MSA"
+            = select_tag :msa, options_for_select(msas)
+      fieldset
+        legend Target Variables
+        div.row
+          div.large-6.columns
+            = label_tag "Key Codes"
+            = select_tag :key_codes, options_for_select(key_codes), :multiple => true, :class => "multiple"
+      = submit_tag 'Find Similar MSAs', :class => "radius button primary"
