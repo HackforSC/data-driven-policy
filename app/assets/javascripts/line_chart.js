@@ -3,8 +3,8 @@ gon.watch
 $(function(){
   new Highcharts.Chart({         
     chart: {
-      renderTo: 'area_chart',
-      type: 'area'
+      renderTo: 'line_chart',
+      type: 'spline'
     },
     title: {
       text: 'CHART TITLE'
@@ -33,16 +33,23 @@ $(function(){
     series: [      
       {
         name: 'Raw Data',
-        data: [ [Date.UTC(1970,  9, 27), 0.1 ],
-             [Date.UTC(1970, 10, 10), 0.6 ],
-             [Date.UTC(1970, 10, 11), 0.7 ],
-             [Date.UTC(1970, 10, 12), 0.8 ],
-             [Date.UTC(1970, 11,  9), 0.6 ],
-             [Date.UTC(1970, 11, 16), 0.6 ],
-             [Date.UTC(1970, 11, 28), 0.67],
-             [Date.UTC(1971,  2,  2), 0.81],
-             [Date.UTC(1971,  2,  8), 0.78],
-             [Date.UTC(1971,  2, 12), 0.98]]
+        data: gon.chart_series[0]
+      },
+      {
+        name: 'Raw Data 2',
+        data: gon.chart_series[1]
+      },
+      {
+        name: 'Raw Data 3',
+        data: gon.chart_series[2]
+      },
+      {
+        name: 'Raw Data 4',
+        data: gon.chart_series[3]
+      },
+      {
+        name: 'Raw Data 5',
+        data: gon.chart_series[4]
       }
     ]
   });

@@ -6,7 +6,10 @@
 
 form {
   fieldset {
-    background: white;  
+    background: white;
+    &.colored {
+      background: #E0A366;
+    }  
     legend {
       padding: 3px;
       border: #CCCCCC 1px solid;

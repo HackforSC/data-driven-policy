@@ -3,17 +3,23 @@
 div.row
   div.large-12.columns
     h1 Make a query
-    = form_tag @msa, :url => msa_search_path do
-      fieldset
+    = form_tag @msa, :url => fetch_msa_search_path do
+      fieldset.colored
         legend MSA
         div.row
           div.large-6.columns
             = label_tag "MSA"
             = select_tag :msa, options_for_select(msas)
-      fieldset
+          div.large-6.columns
+            = label_tag "Year"
+            = select_tag :year, options_for_select(years)
+      fieldset.colored
         legend Target Variables
         div.row
           div.large-6.columns
             = label_tag "Key Codes"
             = select_tag :key_codes, options_for_select(key_codes), :multiple => true, :class => "multiple"
       = submit_tag 'Find Similar MSAs', :class => "radius button primary"
+div.row
+  div.large-12.columns
+    div[id="min_max_chart" style="width:100%; height:400px"] 

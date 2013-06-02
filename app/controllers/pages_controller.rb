@@ -1,30 +1,10 @@
 class PagesController < ApplicationController
   def home
-    gon.chart_data = dummy_data
+    datasets = []
+    datasets.push(dummy_data)
+    datasets.push(dummy_data_two)
+    gon.chart_series = datasets
 
-    respond_to do |format|
-      format.json { }   
-      format.xml  { }
-      format.html  # this renders home.html.haml
-    end 
-  end
-
-  def test
-    @description = EconomicDataService.new.get_msa_descriptions
-    @full_objects = EconomicDataService.new.get_data_objects
-
-    @objects = EconomicDataService.new.get_data_array
-    @count = VariableSummaryContext.call(@objects, :count)
-    @range = VariableSummaryContext.call(@objects, :range)
-    @mean = VariableSummaryContext.call(@objects, :mean)
-    @std_dev = VariableSummaryContext.call(@objects, :standard_deviation)
-    
-    @trimmed_count = VariableSummaryContext.call(@objects, :count, {:trimmed => true})
-    @trimmed_range = VariableSummaryContext.call(@objects, :range, {:trimmed => true})
-    @trimmed_mean = VariableSummaryContext.call(@objects, :mean, {:trimmed => true})
-    @trimmed_std_dev = VariableSummaryContext.call(@objects, :standard_deviation, {:trimmed => true})
-    @num_outliers = VariableSummaryContext.call(@objects, :num_outliers)
-        
     respond_to do |format|
       format.json { }   
       format.xml  { }
@@ -42,14 +22,15 @@ class PagesController < ApplicationController
   end
   
   def fetch_historic_data
-    time_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
-    gon.chart_data = time_series
-    
+    gon.title = "MSA = #{params[:msa]}, Variable = #{params[:key_code]}"
+    gon.msa_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
+    gon.min_series = EconomicDataService.new.get_min_series(params[:key_code])
+    gon.max_series = EconomicDataService.new.get_max_series(params[:key_code])
+        
     render :historic_data
   end
   
-  def msa_search
-    
+  def msa_search    
     respond_to do |format|
       format.json { }   
       format.xml  { }
@@ -58,12 +39,22 @@ class PagesController < ApplicationController
   end
   
   def fetch_msa_search
-    distance = EconomicDataService.new
-#    time_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
-#    gon.chart_data = time_series
+    @params = params
+    variable_data = EconomicDataService.new.get_msa_variables(params[:key_codes], params[:msa], params[:year])
+    closest_three = EconomicDataService.new.find_nearest(variable_data, params[:year], 3)
+
+    @key_code = params[:key_codes].first
+    @match_1 = closest_three[0][0]
+    @match_2 = closest_three[1][0]
+    @match_3 = closest_three[2][0]
+
+    gon.msa_series = EconomicDataService.new.get_annual_data(@key_code, @match_1)
+    gon.min_series = EconomicDataService.new.get_annual_data(@key_code, @match_2)
+    gon.max_series = EconomicDataService.new.get_annual_data(@key_code, @match_3)
     
     render :msa_search
   end
+
   private
   def dummy_data
     # This formatting is somehow still wrong...
@@ -74,11 +65,24 @@ class PagesController < ApplicationController
              [DateTime.new(1970, 11,  9).utc, 0.6 ],
              [DateTime.new(1970, 11, 16).utc, 0.6 ],
              [DateTime.new(1970, 11, 28).utc, 0.67],
-             [DateTime.new(1971,  1,  1).utc, 0.81],
-             [DateTime.new(1971,  1,  8).utc, 0.78],
-             [DateTime.new(1971,  1, 12).utc, 0.98]]
+             [DateTime.new(1971,  2,  2).utc, 0.81],
+             [DateTime.new(1971,  2,  8).utc, 0.78],
+             [DateTime.new(1971,  2, 12).utc, 0.98]]
   end
   
+  def dummy_data_two
+    # This formatting is somehow still wrong...
+    return [ [DateTime.new(1970,  9, 27).utc, 0.4 ],
+             [DateTime.new(1970, 10, 10).utc, 0.3 ],
+             [DateTime.new(1970, 10, 11).utc, 0.77 ],
+             [DateTime.new(1970, 10, 12).utc, 1.2 ],
+             [DateTime.new(1970, 11,  9).utc, 1.6 ],
+             [DateTime.new(1970, 11, 16).utc, 0.5 ],
+             [DateTime.new(1970, 11, 28).utc, 0.37],
+             [DateTime.new(1971,  1,  1).utc, 0.91],
+             [DateTime.new(1971,  1,  8).utc, 1.18],
+             [DateTime.new(1971,  1, 12).utc, 0.48]]
+  end
   
   def self.date_data_array(object)
     date_data_array = []

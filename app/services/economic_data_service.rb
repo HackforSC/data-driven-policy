@@ -53,6 +53,72 @@ class EconomicDataService
     
     return objects
   end
+  
+  def get_msa_variables(variables = ["PCPI_CI", "POP_MI"], msa = "12060", year = "2003")
+    objects = {}
+    
+    variables.each do |variable|
+      data_objects = get_xml_doc(variable, year).xpath("//Data")
+      data_objects.each do |data|
+        if (data.attr("GeoFips") == msa)
+          value = data.attr("DataValue")
+          objects.merge!({ variable => value })
+        end
+      end
+    end
+    
+    return objects
+  end
+  
+  def find_nearest(params, year, num = 1)
+    candidate_scores = {}
+    
+    params.each do |param|
+      variable = param[0]
+      value = param[1]
+
+      data_objects = get_xml_doc(variable, year).xpath("//Data")
+      data_objects.each do |data|
+        if (data.attr("Code") == variable)
+          msa = data.attr("GeoFips")
+          candidate_value = data.attr("DataValue").to_i          
+          distance = distance(variable, year, value, candidate_value)  
+          
+          if candidate_scores.has_key?(msa)
+            candidate_scores[msa] = candidate_scores[msa] + distance.to_f
+          else
+            candidate_scores[msa] = distance.to_f
+          end
+        end
+      end
+    end
+
+    return candidate_scores.sort_by{|k,v| -v}.last 5
+  end
+
+  def get_min_series(variable)
+    objects = []
+    
+    get_years.each do |year|
+      data_point = BeaVariableDistribution.where(:key_code => variable, :year => year).first.min_trim
+      datetime = DateTime.new(year.to_i, 1, 1).utc
+      objects << [datetime, data_point.to_f]
+    end
+    
+    return objects    
+  end
+
+  def get_max_series(variable)
+    objects = []
+    
+    get_years.each do |year|
+      data_point = BeaVariableDistribution.where(:key_code => variable, :year => year).first.max_trim
+      datetime = DateTime.new(year.to_i, 1, 1).utc
+      objects << [datetime, data_point.to_f]
+    end
+    
+    return objects    
+  end
 
   private
   def get_years
@@ -73,5 +139,12 @@ class EconomicDataService
     request_format = "&ResultFormat=" + @format
     
     return request_base + request_methods + request_geography + request_time + request_format
+  end
+  
+  def distance(variable, year, c1, c2)
+    std_dev = BeaVariableDistribution.where(:year => year, :key_code => variable).first.std_dev_trim
+    difference = c2.to_d - c1.to_d
+    unit_difference = difference / std_dev
+    return unit_difference.to_d.abs
   end
 end
