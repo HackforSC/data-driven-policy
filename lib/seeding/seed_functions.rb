@@ -37,8 +37,6 @@ module SeedFunctions
       :std_dev_trim => std_dev_trim
     }
     
-#    puts "Params = #{params}"
-    
     record = BeaVariableDistribution.new(params)
     puts "Created record for key_code = #{variable}, year = #{year}" if record.save
   end

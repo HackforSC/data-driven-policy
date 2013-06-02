@@ -33,7 +33,7 @@ $(function(){
     series: [      
       {
         name: 'Raw Data',
-        data: gon.test_data
+        data: gon.chart_data
       }
     ]
   });

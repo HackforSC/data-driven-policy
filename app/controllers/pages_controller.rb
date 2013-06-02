@@ -1,17 +1,7 @@
 class PagesController < ApplicationController
   def home
-    # This formatting is somehow still wrong...
-    gon.test_data = [[DateTime.new(1970,  9, 27).utc, 0.1 ],
-                     [DateTime.new(1970, 10, 10).utc, 0.6 ],
-                     [DateTime.new(1970, 10, 11).utc, 0.7 ],
-                     [DateTime.new(1970, 10, 12).utc, 0.8 ],
-                     [DateTime.new(1970, 11,  9).utc, 0.6 ],
-                     [DateTime.new(1970, 11, 16).utc, 0.6 ],
-                     [DateTime.new(1970, 11, 28).utc, 0.67],
-                     [DateTime.new(1971,  1,  1).utc, 0.81],
-                     [DateTime.new(1971,  1,  8).utc, 0.78],
-                     [DateTime.new(1971,  1, 12).utc, 0.98]]
-    
+    gon.chart_data = dummy_data
+
     respond_to do |format|
       format.json { }   
       format.xml  { }
@@ -20,7 +10,8 @@ class PagesController < ApplicationController
   end
 
   def test
-    flash[:notice] = "Testing flash"
+    @description = EconomicDataService.new.get_msa_descriptions
+    @full_objects = EconomicDataService.new.get_data_objects
 
     @objects = EconomicDataService.new.get_data_array
     @count = VariableSummaryContext.call(@objects, :count)
@@ -33,8 +24,7 @@ class PagesController < ApplicationController
     @trimmed_mean = VariableSummaryContext.call(@objects, :mean, {:trimmed => true})
     @trimmed_std_dev = VariableSummaryContext.call(@objects, :standard_deviation, {:trimmed => true})
     @num_outliers = VariableSummaryContext.call(@objects, :num_outliers)
-    
-    
+        
     respond_to do |format|
       format.json { }   
       format.xml  { }
@@ -51,7 +41,29 @@ class PagesController < ApplicationController
     end 
   end
   
+  def fetch_historic_data
+    time_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
+    gon.chart_data = time_series
+    
+    render :historic_data
+  end
+  
   private
+  def dummy_data
+    # This formatting is somehow still wrong...
+    return [ [DateTime.new(1970,  9, 27).utc, 0.1 ],
+             [DateTime.new(1970, 10, 10).utc, 0.6 ],
+             [DateTime.new(1970, 10, 11).utc, 0.7 ],
+             [DateTime.new(1970, 10, 12).utc, 0.8 ],
+             [DateTime.new(1970, 11,  9).utc, 0.6 ],
+             [DateTime.new(1970, 11, 16).utc, 0.6 ],
+             [DateTime.new(1970, 11, 28).utc, 0.67],
+             [DateTime.new(1971,  1,  1).utc, 0.81],
+             [DateTime.new(1971,  1,  8).utc, 0.78],
+             [DateTime.new(1971,  1, 12).utc, 0.98]]
+  end
+  
+  
   def self.date_data_array(object)
     date_data_array = []
 #    user.find_past_two_months_of_weight_data.each do |weight|

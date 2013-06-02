@@ -1,0 +1,19 @@
+= provide(:title, 'New Data')
+
+div.row
+  div.large-12.columns
+    h1 Make a query
+    = form_tag @historic_data, :url => fetch_historic_data_path do
+      fieldset
+        legend Account Information
+        div.row
+          div.large-6.columns
+            = label_tag "Key Code"
+            = select_tag :key_code, options_for_select(key_codes)
+          div.large-6.columns
+            = label_tag "MSA"
+            = select_tag :msa, options_for_select(msas)
+      = submit_tag 'update credentials', :class => "radius button primary"
+div.row
+  div.large-12.columns
+    div[id="frames_chart" style="width:100%; height:400px"] 
