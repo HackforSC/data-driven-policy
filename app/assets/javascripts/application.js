@@ -20,5 +20,4 @@
 //= require comparison_chart_1
 //= require comparison_chart_2
 //= require comparison_chart_3
-//= require line_chart
-//= require area_chart
+//= require new_chart

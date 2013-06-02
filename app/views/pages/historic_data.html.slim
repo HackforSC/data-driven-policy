@@ -1,4 +1,4 @@
-= provide(:title, 'New Data')
+= provide(:title, 'Basic Query')
 
 div.row
   div.large-12.columns
@@ -16,6 +16,8 @@ div.row
       = submit_tag 'Get Data', :class => "radius button primary"
 div.row
   div.large-12.columns
-    h5 = @analysis_title
-    p = @data_series
-    div[id="area_chart" style="width:800px; height:400px"]
+    - unless @data_series.nil?
+      div[id="new_chart_1" style="width:800px; height:400px"]
+    div[id="comparison_chart_1" style="display:none;"] 
+    div[id="comparison_chart_2" style="display:none;"] 
+    div[id="comparison_chart_3" style="display:none;"] 

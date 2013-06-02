@@ -7,6 +7,8 @@ class PagesController < ApplicationController
     end 
   end
   
+  # Basic Historic Data Query
+  #----------------------------------------------------------------------------
   def historic_data    
     respond_to do |format|
       format.json { }   
@@ -17,16 +19,20 @@ class PagesController < ApplicationController
   
   def fetch_historic_data
     @analysis_title = "MSA = #{msa_name(params[:msa])}, Variable = #{key_code_name(params[:key_code])}"
-#    gon.title = @analysis_title
-#    gon.data_series_name = msa_name(params[:msa])
     @data_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
-    gon.data_series = @data_series
         
+    gon.title_1 = key_code_name(params[:key_code])
+    gon.yaxis_1 = "Variable"
+    gon.series_name = msa_name(params[:msa])
+    gon.data_series = @data_series
+
     render :historic_data
   end
   
-  def msa_search    
-
+  
+  # MSA Search controller functions
+  #----------------------------------------------------------------------------
+  def msa_search
     respond_to do |format|
       format.json { }   
       format.xml  { }

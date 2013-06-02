@@ -2,14 +2,14 @@ doctype html
 html
   head
     meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-    meta name="author" content="Credda Financial Corporation"
+    meta name="author" content="Bryce Senz"
     meta name="description" content=full_description
-    meta name="keywords" content="lease-to-own"
+    meta name="keywords" content="data analysis public policy"
     title = full_title
     = include_gon
     = stylesheet_link_tag :application, :media => "all"
-    = javascript_include_tag "vendor/custom.modernizr"
     = javascript_include_tag :application, :media => "all"
+    = javascript_include_tag "vendor/custom.modernizr"
     = csrf_meta_tags
     = yield(:head)
   body[class=body_classes]

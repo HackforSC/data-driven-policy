@@ -3,11 +3,11 @@ gon.watch
 $(function(){
   new Highcharts.Chart({         
     chart: {
-      renderTo: 'min_max_chart',
+      renderTo: 'new_chart_1',
       type: 'spline'
     },
     title: {
-      text: gon.title
+      text: gon.title_1
     },
     subtitle: {
       text: 'BEA Data from 2001-2011'
@@ -15,13 +15,12 @@ $(function(){
     xAxis: {        
       type: 'datetime',
       dateTimeLabelFormats: {
-        month: '%e. %b',
-        year: '%b'
+        year: '%Y'
       }
     },
     yAxis: {
       title: {
-        text: "Data Label"
+        text: gon.yaxis_1
       },
       min: 0
     },
@@ -30,19 +29,11 @@ $(function(){
         return Highcharts.dateFormat("%B %e %Y", this.x) + ':' + Highcharts.numberFormat(this.y, 1);
       }
     },
-    series: [      
+    series: [
       {
-        name: 'MSA',
-        data: gon.msa_series
+        name: gon.series_name,
+        data: gon.data_series
       },
-      {
-        name: 'Minimum',
-        data: gon.min_series
-      },
-      {
-        name: 'Maximum',
-        data: gon.max_series
-      }
     ]
   });
 });

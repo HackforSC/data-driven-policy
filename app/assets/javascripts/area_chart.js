@@ -7,21 +7,20 @@ $(function(){
       type: 'area'
     },
     title: {
-      text: gon.title
+      text: 'my title'
     },
     subtitle: {
-      text: gon.subtitle
+      text: 'my subtitle'
     },
     xAxis: {        
       type: 'datetime',
       dateTimeLabelFormats: {
-        month: '%e. %b',
-        year: '%b'
+        year: '%Y'
       }
     },
     yAxis: {
       title: {
-        text: gon.yaxis_label
+        text: 'my label'
       },
       min: 0
     },
@@ -32,12 +31,8 @@ $(function(){
     },
     series: [      
       {
-        name: 'Working',
-        data: gon.chart_series[0]
-      },
-      {
-        name: 'Failing',
-        data: gon.chart_series[1]
+        name: 'Working Data',
+        data: [ [20100, 30123] ]
       }
     ]
   });
