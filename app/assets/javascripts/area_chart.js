@@ -1,3 +1,5 @@
+gon.watch
+
 $(function(){
   new Highcharts.Chart({         
     chart: {
@@ -30,17 +32,8 @@ $(function(){
     },
     series: [      
       {
-        name: '2008',
-        data: [[Date.UTC(1970,  9, 27), 0 ],
-            [Date.UTC(1970, 10, 10), 0.6 ],
-            [Date.UTC(1970, 10, 11), 0.7 ],
-            [Date.UTC(1970, 10, 12), 0.8 ],
-            [Date.UTC(1970, 11,  9), 0.6 ],
-            [Date.UTC(1970, 11, 16), 0.6 ],
-            [Date.UTC(1970, 11, 28), 0.67],
-            [Date.UTC(1971,  1,  1), 0.81],
-            [Date.UTC(1971,  1,  8), 0.78],
-            [Date.UTC(1971,  1, 12), 0.98]]
+        name: 'Raw Data',
+        data: gon.test_data
       }
     ]
   });
