@@ -7,21 +7,20 @@ $(function(){
       type: 'spline'
     },
     title: {
-      text: 'CHART TITLE'
+      text: gon.title
     },
     subtitle: {
-      text: 'Inner circle: 2008, outer circle: 2010'
+      text: 'BEA Data 2001 - 2011'
     },
     xAxis: {        
       type: 'datetime',
       dateTimeLabelFormats: {
-        month: '%e. %b',
-        year: '%b'
+        year: '%Y'
       }
     },
     yAxis: {
       title: {
-        text: "Data Label"
+        text: "Data"
       },
       min: 0
     },
@@ -33,7 +32,7 @@ $(function(){
     series: [      
       {
         name: 'Raw Data',
-        data: [ [ 1000, 1000 ] ]
+        data: gon.data_series
       },
     ]
   });

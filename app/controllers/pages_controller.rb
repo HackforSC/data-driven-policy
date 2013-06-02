@@ -1,15 +1,5 @@
 class PagesController < ApplicationController
   def home
-    gon.title = "Home Chart"
-    gon.subtitle = "Subtitle"
-    gon.render_to = "area_chart"
-    gon.yaxis_label = "Awesomeness"
-    
-    datasets = []
-    datasets.push(dummy_data)
-    datasets.push(dummy_data_two)
-    gon.chart_series = datasets
-
     respond_to do |format|
       format.json { }   
       format.xml  { }
@@ -26,10 +16,9 @@ class PagesController < ApplicationController
   end
   
   def fetch_historic_data
-    gon.title = "MSA = #{params[:msa]}, Variable = #{params[:key_code]}"
-    gon.msa_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
-    gon.min_series = EconomicDataService.new.get_min_series(params[:key_code])
-    gon.max_series = EconomicDataService.new.get_max_series(params[:key_code])
+    gon.title = "MSA = #{msa_name(params[:msa])}, Variable = #{key_code_name(params[:key_code])}"
+    gon.data_series_name = msa_name(params[:msa])
+    gon.data_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
         
     render :historic_data
   end
@@ -95,13 +84,6 @@ class PagesController < ApplicationController
       
       index = index + 1
     end
-#    @key_code = params[:key_codes].first
-#    @match_1 = closest_three[0][0]
-#    @match_2 = closest_three[1][0]
-#    @match_3 = closest_three[2][0]
-#    gon.msa_series = EconomicDataService.new.get_annual_data(@key_code, @match_1)
-#    gon.min_series = EconomicDataService.new.get_annual_data(@key_code, @match_2)
-#    gon.max_series = EconomicDataService.new.get_annual_data(@key_code, @match_3)
     
     render :msa_search
   end
@@ -125,31 +107,5 @@ class PagesController < ApplicationController
       end
     end
     return nil
-  end
-
-  def dummy_data
-    return [ [DateTime.new(1970,  9, 27).to_i * 1000, 0.1 ],
-             [DateTime.new(1970, 10, 10).to_i * 1000, 0.6 ],
-             [DateTime.new(1970, 10, 11).to_i * 1000, 0.7 ],
-             [DateTime.new(1970, 10, 12).to_i * 1000, 0.8 ],
-             [DateTime.new(1970, 11,  9).to_i * 1000, 0.6 ],
-             [DateTime.new(1970, 11, 16).to_i * 1000, 0.6 ],
-             [DateTime.new(1970, 11, 28).to_i * 1000, 0.67],
-             [DateTime.new(1971,  2,  2).to_i * 1000, 0.81],
-             [DateTime.new(1971,  2,  8).to_i * 1000, 0.78],
-             [DateTime.new(1971,  2, 12).to_i * 1000, 0.98]]
-  end
-  
-  def dummy_data_two
-    return [ [DateTime.new(1970,  9, 27).to_i * 1000, 0.4 ],
-             [DateTime.new(1970, 10, 10).to_i * 1000, 0.3 ],
-             [DateTime.new(1970, 10, 11).to_i * 1000, 0.77 ],
-             [DateTime.new(1970, 10, 12).to_i * 1000, 1.2 ],
-             [DateTime.new(1970, 11,  9).to_i * 1000, 1.6 ],
-             [DateTime.new(1970, 11, 16).to_i * 1000, 0.5 ],
-             [DateTime.new(1970, 11, 28).to_i * 1000, 0.37],
-             [DateTime.new(1971,  1,  1).to_i * 1000, 0.91],
-             [DateTime.new(1971,  1,  8).to_i * 1000, 1.18],
-             [DateTime.new(1971,  1, 12).to_i * 1000, 0.48]]
   end
 end
