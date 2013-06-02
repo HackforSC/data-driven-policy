@@ -3,7 +3,7 @@ gon.watch
 $(function(){
   new Highcharts.Chart({         
     chart: {
-      renderTo: 'line_chart',
+      renderTo: "line_chart",
       type: 'spline'
     },
     title: {
@@ -33,24 +33,8 @@ $(function(){
     series: [      
       {
         name: 'Raw Data',
-        data: gon.chart_series[0]
+        data: [ [ 1000, 1000 ] ]
       },
-      {
-        name: 'Raw Data 2',
-        data: gon.chart_series[1]
-      },
-      {
-        name: 'Raw Data 3',
-        data: gon.chart_series[2]
-      },
-      {
-        name: 'Raw Data 4',
-        data: gon.chart_series[3]
-      },
-      {
-        name: 'Raw Data 5',
-        data: gon.chart_series[4]
-      }
     ]
   });
 });

@@ -3,14 +3,14 @@ gon.watch
 $(function(){
   new Highcharts.Chart({         
     chart: {
-      renderTo: 'area_chart',
+      renderTo: gon.render_to,
       type: 'area'
     },
     title: {
-      text: 'CHART TITLE'
+      text: gon.title
     },
     subtitle: {
-      text: 'Inner circle: 2008, outer circle: 2010'
+      text: gon.subtitle
     },
     xAxis: {        
       type: 'datetime',
@@ -21,7 +21,7 @@ $(function(){
     },
     yAxis: {
       title: {
-        text: "Data Label"
+        text: gon.yaxis_label
       },
       min: 0
     },
@@ -32,17 +32,12 @@ $(function(){
     },
     series: [      
       {
-        name: 'Raw Data',
-        data: [ [Date.UTC(1970,  9, 27), 0.1 ],
-             [Date.UTC(1970, 10, 10), 0.6 ],
-             [Date.UTC(1970, 10, 11), 0.7 ],
-             [Date.UTC(1970, 10, 12), 0.8 ],
-             [Date.UTC(1970, 11,  9), 0.6 ],
-             [Date.UTC(1970, 11, 16), 0.6 ],
-             [Date.UTC(1970, 11, 28), 0.67],
-             [Date.UTC(1971,  2,  2), 0.81],
-             [Date.UTC(1971,  2,  8), 0.78],
-             [Date.UTC(1971,  2, 12), 0.98]]
+        name: 'Working',
+        data: gon.chart_series[0]
+      },
+      {
+        name: 'Failing',
+        data: gon.chart_series[1]
       }
     ]
   });

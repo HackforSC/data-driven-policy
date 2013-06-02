@@ -1,0 +1,44 @@
+- data_array = [ 103000, 104000]
+javascript:
+  $(function(){
+    new Highcharts.Chart({         
+      chart: {
+        renderTo: "line_chart",
+        type: 'area'
+      },
+      title: {
+        text: "#{data_array.inspect}"
+      },
+      subtitle: {
+        text: "Title"
+      },
+      xAxis: {        
+        type: 'datetime',
+        dateTimeLabelFormats: {
+          month: '%e. %b',
+          year: '%b'
+        }
+      },
+      yAxis: {
+        title: {
+          text: "Axis Label"
+        },
+        min: 0
+      },
+      tooltip:{
+        formatter: function(){
+          return Highcharts.dateFormat("%B %e %Y", this.x) + ':' + Highcharts.numberFormat(this.y, 1);
+        }
+      },
+      series: [      
+        {
+          name: 'Working',
+          data:  [ [ 102 * 1000, 103 * 1000] ]
+        },
+        {
+          name: 'Failing',
+          data:  ["#{[103000, 104000].to_json}"]
+        }
+      ]
+    });
+  });

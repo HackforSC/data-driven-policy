@@ -5,21 +5,36 @@ div.row
     h1 Make a query
     = form_tag @msa, :url => fetch_msa_search_path do
       fieldset.colored
-        legend MSA
+        legend MSA Similarity Search
         div.row
           div.large-6.columns
-            = label_tag "MSA"
-            = select_tag :msa, options_for_select(msas)
+            div.row
+              div.large-12.columns
+                = label_tag "MSA"
+                = select_tag :msa, options_for_select(msas)
+            div.row
+              div.large-12.columns
+                = label_tag "Year"
+                = select_tag :year, options_for_select(years)
+            div.row
+              div.large-12.columns
+                h6 The Haps
+                p 
+                  | Pick any MSA & point in time, as well as the 1-3 factors that are most important 
+                  | to your analysis.  We'll find the most statistically similar MSAs, and show you
+                  | how they've trended as time has gone on.
           div.large-6.columns
-            = label_tag "Year"
-            = select_tag :year, options_for_select(years)
-      fieldset.colored
-        legend Target Variables
-        div.row
-          div.large-6.columns
-            = label_tag "Key Codes"
+            = label_tag "Target Variables"
             = select_tag :key_codes, options_for_select(key_codes), :multiple => true, :class => "multiple"
       = submit_tag 'Find Similar MSAs', :class => "radius button primary"
 div.row
   div.large-12.columns
-    div[id="min_max_chart" style="width:100%; height:400px"] 
+    - unless @tabs.nil? || @tabs.empty?
+      h5 = @analysis_title
+      div[class="section-container auto" data-section]
+        - @tabs.each_with_index do |tab, index|
+          section
+            p[class="title" data-section-title]
+              = link_to "#{tab}", "#panel#{index}"
+            div[class="content" data-section-content]
+              div[id="comparison_chart_#{index + 1}" style="width:800px; height:400px"] 

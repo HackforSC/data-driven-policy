@@ -44,7 +44,7 @@ class EconomicDataService
       data_objects = get_xml_doc(variable, year).xpath("//Data")
       data_objects.each do |data|
         if (data.attr("GeoFips") == msa)
-          datetime = DateTime.new(year.to_i, 1, 1).utc
+          datetime = DateTime.new(year.to_i, 1, 1).to_i * 1000
           value = data.attr("DataValue").to_i
           objects << [datetime, value]
         end
@@ -93,6 +93,7 @@ class EconomicDataService
       end
     end
 
+#    candidate.scores.sort_by
     return candidate_scores.sort_by{|k,v| -v}.last 5
   end
 
@@ -101,7 +102,7 @@ class EconomicDataService
     
     get_years.each do |year|
       data_point = BeaVariableDistribution.where(:key_code => variable, :year => year).first.min_trim
-      datetime = DateTime.new(year.to_i, 1, 1).utc
+      datetime = DateTime.new(year.to_i, 1, 1).to_i * 1000
       objects << [datetime, data_point.to_f]
     end
     
@@ -113,7 +114,7 @@ class EconomicDataService
     
     get_years.each do |year|
       data_point = BeaVariableDistribution.where(:key_code => variable, :year => year).first.max_trim
-      datetime = DateTime.new(year.to_i, 1, 1).utc
+      datetime = DateTime.new(year.to_i, 1, 1).to_1 * 1000
       objects << [datetime, data_point.to_f]
     end
     
