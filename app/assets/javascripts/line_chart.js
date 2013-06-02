@@ -3,11 +3,11 @@ gon.watch
 $(function(){
   new Highcharts.Chart({         
     chart: {
-      renderTo: "line_chart",
-      type: 'spline'
+      renderTo: 'line_chart',
+      type: 'area'
     },
     title: {
-      text: gon.title
+      text: "Title"
     },
     subtitle: {
       text: 'BEA Data 2001 - 2011'
@@ -31,9 +31,9 @@ $(function(){
     },
     series: [      
       {
-        name: 'Raw Data',
-        data: gon.data_series
-      },
+        name: "Hello",
+        data: [[ 10000, 10030]]
+      }
     ]
   });
 });

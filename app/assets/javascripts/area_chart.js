@@ -3,7 +3,7 @@ gon.watch
 $(function(){
   new Highcharts.Chart({         
     chart: {
-      renderTo: gon.render_to,
+      renderTo: 'area_chart',
       type: 'area'
     },
     title: {

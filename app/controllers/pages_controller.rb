@@ -16,9 +16,11 @@ class PagesController < ApplicationController
   end
   
   def fetch_historic_data
-    gon.title = "MSA = #{msa_name(params[:msa])}, Variable = #{key_code_name(params[:key_code])}"
-    gon.data_series_name = msa_name(params[:msa])
-    gon.data_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
+    @analysis_title = "MSA = #{msa_name(params[:msa])}, Variable = #{key_code_name(params[:key_code])}"
+#    gon.title = @analysis_title
+#    gon.data_series_name = msa_name(params[:msa])
+    @data_series = EconomicDataService.new.get_annual_data(params[:key_code], params[:msa])
+    gon.data_series = @data_series
         
     render :historic_data
   end
