@@ -98,6 +98,9 @@ GEM
     fastercsv (1.5.5)
     ffi (1.8.1)
     fssm (0.2.10)
+    gon (4.1.0)
+      actionpack (>= 2.3.0)
+      json
     gritter (1.0.3)
     haml (3.1.8)
     hash-deep-merge (0.1.1)
@@ -279,6 +282,7 @@ DEPENDENCIES
   database_cleaner
   email_spec (>= 1.3.0)
   factory_girl_rails (~> 4.0)
+  gon
   gritter (= 1.0.3)
   highcharts-rails (~> 3.0.0)
   jquery-rails (~> 2.1)

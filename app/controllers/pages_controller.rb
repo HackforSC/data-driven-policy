@@ -1,34 +1,39 @@
 class PagesController < ApplicationController
   def home
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title({ :text=>"Demo Chart"})
-      f.chart({ :type => 'spline'})
-      f.options[:xAxis] = { :type => 'datetime',
-                            :dateTimeLabelFormats => { :month => '%e. %b', :year => '%b' },
-                            :title => { :text => nil } }
-      f.series(:type => 'area', :name=> 'Test', 
-               :data => [[DateTime.new(1970,  9, 27).utc, 0   ],
-                        [DateTime.new(1970, 10, 10).utc, 0.6 ],
-                        [DateTime.new(1970, 10, 11).utc, 0.7 ],
-                        [DateTime.new(1970, 10, 12).utc, 0.8 ],
-                        [DateTime.new(1970, 11,  9).utc, 0.6 ],
-                        [DateTime.new(1970, 11, 16).utc, 0.6 ],
-                        [DateTime.new(1970, 11, 28).utc, 0.67],
-                        [DateTime.new(1971,  1,  1).utc, 0.81],
-                        [DateTime.new(1971,  1,  8).utc, 0.78],
-                        [DateTime.new(1971,  1, 12).utc, 0.98]] )
-    end
-    
+    @test = 100
     @data = [[DateTime.new(1970,  9, 27).utc, 0   ],
-                        [DateTime.new(1970, 10, 10).utc, 0.6 ],
-                        [DateTime.new(1970, 10, 11).utc, 0.7 ],
-                        [DateTime.new(1970, 10, 12).utc, 0.8 ],
-                        [DateTime.new(1970, 11,  9).utc, 0.6 ],
-                        [DateTime.new(1970, 11, 16).utc, 0.6 ],
-                        [DateTime.new(1970, 11, 28).utc, 0.67],
-                        [DateTime.new(1971,  1,  1).utc, 0.81],
-                        [DateTime.new(1971,  1,  8).utc, 0.78],
-                        [DateTime.new(1971,  1, 12).utc, 0.98]]
+             [DateTime.new(1970, 10, 10).utc, 0.6 ],
+             [DateTime.new(1970, 10, 11).utc, 0.7 ],
+             [DateTime.new(1970, 10, 12).utc, 0.8 ],
+             [DateTime.new(1970, 11,  9).utc, 0.6 ],
+             [DateTime.new(1970, 11, 16).utc, 0.6 ],
+             [DateTime.new(1970, 11, 28).utc, 0.67],
+             [DateTime.new(1971,  1,  1).utc, 0.81],
+             [DateTime.new(1971,  1,  8).utc, 0.78],
+             [DateTime.new(1971,  1, 12).utc, 0.98]]
+=begin
+    @new_data = [Date.UTC(1970,  9, 27), 0   ],
+                [Date.UTC(1970, 10, 10), 0.6 ],
+                [Date.UTC(1970, 10, 11), 0.7 ],
+                [Date.UTC(1970, 10, 12), 0.8 ],
+                [Date.UTC(1970, 11,  9), 0.6 ],
+                [Date.UTC(1970, 11, 16), 0.6 ],
+                [Date.UTC(1970, 11, 28), 0.67],
+                [Date.UTC(1971,  1,  1), 0.81],
+                [Date.UTC(1971,  1,  8), 0.78],
+                [Date.UTC(1971,  1, 12), 0.98]
+=end
+    @other_data = [DateTime.new(1970,  9, 27).utc, 0],
+             [DateTime.new(1970, 10, 10).utc, 0.6 ],
+             [DateTime.new(1970, 10, 11).utc, 0.7 ],
+             [DateTime.new(1970, 10, 12).utc, 0.8 ],
+             [DateTime.new(1970, 11,  9).utc, 0.6 ],
+             [DateTime.new(1970, 11, 16).utc, 0.6 ],
+             [DateTime.new(1970, 11, 28).utc, 0.67],
+             [DateTime.new(1971,  1,  1).utc, 0.81],
+             [DateTime.new(1971,  1,  8).utc, 0.78],
+             [DateTime.new(1971,  1, 12).utc, 0.98]
+    @raw = "[Sun, 27 Sep 1970 00:00:00 +0000, 0], [Sat, 10 Oct 1970 00:00:00 +0000, 0.6], [Sun, 11 Oct 1970 00:00:00 +0000, 0.7], [Mon, 12 Oct 1970 00:00:00 +0000, 0.8], [Mon, 09 Nov 1970 00:00:00 +0000, 0.6], [Mon, 16 Nov 1970 00:00:00 +0000, 0.6], [Sat, 28 Nov 1970 00:00:00 +0000, 0.67], [Fri, 01 Jan 1971 00:00:00 +0000, 0.81], [Fri, 08 Jan 1971 00:00:00 +0000, 0.78], [Tue, 12 Jan 1971 00:00:00 +0000, 0.98]"
     
     respond_to do |format|
       format.json { }   

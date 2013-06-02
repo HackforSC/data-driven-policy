@@ -17,3 +17,4 @@
 //= require jquery_nested_form
 //= require gritter
 //= require highcharts
+//= require area_chart
