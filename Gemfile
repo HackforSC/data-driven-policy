@@ -57,6 +57,7 @@ group :development, :test do
   gem 'brakeman', '~> 1.8.0'
   gem 'timecop', '>= 0.5.7'
   gem 'spring'
+  gem 'heroku_san', '~> 4.2.3'
 #  gem 'perftools.rb', :git => 'git://github.com/tmm1/perftools.rb.git'
 end
 

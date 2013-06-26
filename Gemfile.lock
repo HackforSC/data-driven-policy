@@ -87,6 +87,7 @@ GEM
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
+    excon (0.23.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
     extendmatrix (0.3.1)
@@ -104,6 +105,11 @@ GEM
     gritter (1.0.3)
     haml (3.1.8)
     hash-deep-merge (0.1.1)
+    heroku-api (0.3.12)
+      excon (~> 0.23.0)
+    heroku_san (4.2.5)
+      heroku-api (>= 0.1.2)
+      rake
     highcharts-rails (3.0.1.5)
       cocaine (~> 0.4.0)
       railties (>= 3.1)
@@ -284,6 +290,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   gon
   gritter (= 1.0.3)
+  heroku_san (~> 4.2.3)
   highcharts-rails (~> 3.0.0)
   jquery-rails (~> 2.1)
   jquery-ui-rails (~> 2.0.0)
