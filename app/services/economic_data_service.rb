@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'open-uri'
+
 class EconomicDataService
   def initialize(key = nil, fips = nil)
     @key ||= "0C2DB8A8-4910-4624-B298-41F283F9A74C"
