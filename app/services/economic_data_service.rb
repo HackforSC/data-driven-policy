@@ -127,10 +127,9 @@ class EconomicDataService
   
   def get_xml_doc(variable, year)
     url = build_request(variable, year)
-#    doc = Nokogiri::XML(open(url))
+    doc = Nokogiri::XML(open(url))
 #    doc = Nokogiri::XML(open("http://www.bea.gov/api/data/?&UserID=0C2DB8A8-4910-4624-B298-41F283F9A74C&method=GetData&datasetname=RegionalData&KeyCode=GDP_MP&GeoFIPS=MSA&Year=2001&ResultFormat=XML"))
-    doc = Nokogiri::XML(open("http://www.w3schools.com/xml/note.xml"))
-    put "GOT PAST OPEN"
+#    doc = Nokogiri::XML(open("http://www.w3schools.com/xml/note.xml"))
     return doc 
   end
   
