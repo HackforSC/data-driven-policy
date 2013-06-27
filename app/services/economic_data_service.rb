@@ -93,7 +93,6 @@ class EconomicDataService
       end
     end
 
-#    candidate.scores.sort_by
     return candidate_scores.sort_by{|k,v| -v}.last 5
   end
 
