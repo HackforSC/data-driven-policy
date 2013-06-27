@@ -296,6 +296,7 @@ DEPENDENCIES
   jquery_datepicker
   lazy_high_charts
   nested_form (~> 0.3.1)
+  nokogiri
   pg
   rails (= 3.2.13)
   rake (= 10.0.4)

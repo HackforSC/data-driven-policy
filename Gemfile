@@ -73,8 +73,8 @@ end
 # Statistics packages
 gem 'statsample', '~> 1.2.0'
 
-# HTTP requests
-#gem 'httparty'
+# XML Parsing
+gem 'nokogiri'
 
 # Gems for seeding
 gem 'seedbank', '~> 0.2.0'
